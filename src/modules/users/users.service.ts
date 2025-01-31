@@ -2,14 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from '../prisma/prisma.service';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
 
-  constructor(private prima: PrismaService){}
+  constructor(private readonly prima: PrismaService) { }
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  create(createUserDto: Prisma.UserCreateInput) {
+    return this.prima.user.create({ data: createUserDto })
   }
 
   findAll() {
@@ -17,11 +18,11 @@ export class UsersService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} user`;
+    return this.prima.user.findUnique({ where: { id } })
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  update(id: number, updateUserDto: Prisma.UserUpdateInput) {
+    return this.prima.user.update({ data: updateUserDto, where: { id } })
   }
 
   remove(id: number) {
