@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from 
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateUserSettingsDto } from './dto/updateUserSettings.dot';
 
 @Controller('users')
 export class UsersController {
@@ -30,5 +31,13 @@ export class UsersController {
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.usersService.remove(id);
+  }
+
+  @Patch(':userId/settings')
+  updateUserSettingsByUserId(
+    @Param('userId', ParseIntPipe) userId: number,
+    @Body() updateUserSettingsDto: UpdateUserSettingsDto
+  ) {
+    return this.usersService.updateUserSettings(userId, updateUserSettingsDto)
   }
 }

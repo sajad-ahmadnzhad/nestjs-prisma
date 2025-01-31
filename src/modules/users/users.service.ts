@@ -43,4 +43,12 @@ export class UsersService {
   remove(id: number) {
     return this.prima.user.delete({ where: { id } })
   }
+
+
+  updateUserSettings(userId: number, settings: Prisma.UserSettingUpdateInput) {
+   return this.prima.userSetting.update({
+      where: { userId },
+      data: settings
+    })
+  }
 }
