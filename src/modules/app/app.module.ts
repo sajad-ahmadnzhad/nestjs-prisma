@@ -2,6 +2,7 @@ import { Module, ValidationPipe } from "@nestjs/common";
 import { APP_PIPE } from "@nestjs/core";
 import { ConfigModule } from "@nestjs/config";
 import { PrismaModule } from "../prisma/prisma.module";
+import { UsersModule } from "../users/users.module";
 
 @Module({
   imports: [
@@ -9,7 +10,8 @@ import { PrismaModule } from "../prisma/prisma.module";
       isGlobal: true,
       envFilePath: `${process.cwd()}/.env`,
     }),
-    PrismaModule
+    PrismaModule,
+    UsersModule
   ],
   controllers: [],
   providers: [
