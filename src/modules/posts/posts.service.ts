@@ -16,6 +16,10 @@ export class PostsService {
     return `This action returns all posts`;
   }
 
+  findPostByUserId(userId: number) {
+    return this.prisma.post.findMany({ where: { userId }, include: { user: true } })
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} post`;
   }
