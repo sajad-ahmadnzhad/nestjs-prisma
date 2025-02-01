@@ -3,6 +3,7 @@ import { APP_PIPE } from "@nestjs/core";
 import { ConfigModule } from "@nestjs/config";
 import { PrismaModule } from "../prisma/prisma.module";
 import { UsersModule } from "../users/users.module";
+import { PostsModule } from "../posts/posts.module";
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { UsersModule } from "../users/users.module";
       envFilePath: `${process.cwd()}/.env`,
     }),
     PrismaModule,
-    UsersModule
+    UsersModule,
+    PostsModule
   ],
   controllers: [],
   providers: [

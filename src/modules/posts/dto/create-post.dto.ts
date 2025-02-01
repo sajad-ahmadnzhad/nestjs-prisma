@@ -8,8 +8,7 @@ export class CreatePostDto {
 
     @IsString()
     @IsNotEmpty()
-    @IsOptional()
-    description?: string
+    description: string
 
     @IsNumber()
     @IsPositive()
